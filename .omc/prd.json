@@ -99,6 +99,35 @@
         "Deployed URL is accessible and returns the home page",
         "API route /api/discover returns valid JSON"
       ]
+    },
+    {
+      "id": "US-008",
+      "label": "Auto-load Top Trendings by Category on Page Load",
+      "priority": 8,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Page automatically loads trending repos for 4 categories on mount: TypeScript, Python, Go, Rust",
+        "Each category displayed as a tab/section with its own list of repos",
+        "Active tab shows top 10 repos for that category (7d window)",
+        "Tabs switch instantly without full page reload",
+        "Loading skeleton shown while fetching",
+        "No GitHub token required — uses unauthenticated GitHub API"
+      ]
+    },
+    {
+      "id": "US-009",
+      "label": "UI Enhancements — Better Visual Design",
+      "priority": 9,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Hero section with gradient background and animated title",
+        "Category tabs with icons for each language",
+        "Card animations: subtle scale on hover, smooth fade-in",
+        "Better color palette: vibrant accent colors, clean card design",
+        "Stars/velocity displayed as visual badges with icons",
+        "Language color dots match GitHub language colors",
+        "Responsive grid maintains visual hierarchy on mobile"
+      ]
     }
   ]
 }

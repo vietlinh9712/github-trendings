@@ -23,78 +23,65 @@ export function SearchForm({ onSearch, loading, initialValues }: SearchFormProps
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 mb-8">
-      {/* Time Window */}
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-          Time Window
-        </label>
-        <div className="flex gap-2">
-          {WINDOWS.map(w => (
-            <button
-              key={w}
-              type="button"
-              onClick={() => setWindow(w)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                window === w
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
-              }`}
-            >
-              {w}
-            </button>
-          ))}
-        </div>
-      </div>
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="flex flex-col gap-3">
+        {/* Language input */}
+        <input
+          type="text"
+          value={lang}
+          onChange={e => setLang(e.target.value)}
+          placeholder="Language (e.g. TypeScript, Python, Go...)"
+          className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/10 backdrop-blur text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-sm"
+        />
 
-      {/* Language + Limit Row */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-5">
-        <div className="flex-1">
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-            Language
-          </label>
-          <input
-            type="text"
-            value={lang}
-            onChange={e => setLang(e.target.value)}
-            placeholder="e.g. TypeScript, Python, Go..."
-            className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-            Results
-          </label>
+        {/* Window + Limit row */}
+        <div className="flex gap-2">
+          <div className="flex gap-1 bg-white/10 rounded-xl p-1">
+            {WINDOWS.map(w => (
+              <button
+                key={w}
+                type="button"
+                onClick={() => setWindow(w)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  window === w
+                    ? 'bg-blue-500 text-white shadow'
+                    : 'text-slate-300 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {w}
+              </button>
+            ))}
+          </div>
           <select
             value={limit}
             onChange={e => setLimit(Number(e.target.value))}
-            className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             {LIMITS.map(l => (
-              <option key={l} value={l}>{l}</option>
+              <option key={l} value={l} className="bg-slate-800">{l}</option>
             ))}
           </select>
         </div>
-      </div>
 
-      {/* Submit */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors"
-      >
-        {loading ? (
-          <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            Searching...
-          </>
-        ) : (
-          <>
-            <Search className="w-5 h-5" />
-            Discover Repos
-          </>
-        )}
-      </button>
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Searching...
+            </>
+          ) : (
+            <>
+              <Search className="w-5 h-5" />
+              Discover
+            </>
+          )}
+        </button>
+      </div>
     </form>
   );
 }
