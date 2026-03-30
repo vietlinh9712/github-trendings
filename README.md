@@ -1,11 +1,11 @@
-# FindStars
+# GitHub Trendings
 
 **Discover emerging GitHub repositories with rising star velocity.**
 
-FindStars surfaces hidden gem repos that are rapidly gaining momentum — before they hit mainstream trending.
+GitHub Trendings surfaces hidden gem repos that are rapidly gaining momentum — before they hit mainstream trending.
 
 ```
-$ findstars discover --window 7d --lang TypeScript --limit 10
+$ github-trendings discover --window 7d --lang TypeScript --limit 10
 ```
 
 ## Features
@@ -19,7 +19,7 @@ $ findstars discover --window 7d --lang TypeScript --limit 10
 ## Install
 
 ```bash
-npm install -g findstars
+npm install -g github-trendings
 ```
 
 Or build from source:
@@ -35,13 +35,13 @@ npm run build
 
 ```bash
 # Default: 7-day window, top 20 repos
-findstars discover
+github-trendings discover
 
 # 24-hour window, TypeScript only
-findstars discover --window 24h --lang TypeScript
+github-trendings discover --window 24h --lang TypeScript
 
 # 30-day window, JSON output
-findstars discover --window 30d --json --limit 50
+github-trendings discover --window 30d --json --limit 50
 ```
 
 ### Options
@@ -58,15 +58,15 @@ findstars discover --window 30d --json --limit 50
 
 ```bash
 # Show cache stats
-findstars cache --stats
+github-trendings cache --stats
 
 # Clear cache
-findstars cache --clear
+github-trendings cache --clear
 ```
 
 ## How It Works
 
-FindStars uses GitHub's Search API to find repositories created within your time window, then scores them using a **velocity × volume** formula:
+GitHub Trendings uses GitHub's Search API to find repositories created within your time window, then scores them using a **velocity × volume** formula:
 
 ```
 score = (stars / days_old) × log(stars + 1)
