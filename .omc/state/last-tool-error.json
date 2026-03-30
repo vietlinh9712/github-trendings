@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"git status 2>&1\"}",
+  "error": "Exit code 128\nfatal: not a git repository (or any of the parent directories): .git",
+  "timestamp": "2026-03-30T15:45:10.395Z",
+  "retry_count": 2
+}

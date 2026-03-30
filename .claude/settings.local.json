@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash \"C:/Users/pc/.claude/plugins/marketplaces/omc//scripts/setup-progress.sh\" resume)",
+      "Bash(bash \"C:/Users/pc/.claude/plugins/marketplaces/omc//scripts/setup-claude-md.sh\" local)",
+      "Bash(bash \"C:/Users/pc/.claude/plugins/marketplaces/omc//scripts/setup-progress.sh\" save 2 local)",
+      "Bash(node:*)",
+      "Bash(npm view:*)",
+      "Bash(bash \"C:/Users/pc/.claude/plugins/marketplaces/omc//scripts/setup-progress.sh\" save 4 local)",
+      "Bash(bash \"C:/Users/pc/.claude/plugins/marketplaces/omc//scripts/setup-progress.sh\" save 6 local)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "mcp__plugin_oh-my-claudecode_t__lsp_diagnostics_directory",
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/pc/AppData/Local/Temp/claude/C--Users-pc-Desktop-projects-findstars/b612e1ea-494a-4fd1-b479-061863f958d5/tasks/**)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/pc/Desktop/projects/findstars/**)",
+      "Bash(done)",
+      "mcp__plugin_oh-my-claudecode_t__state_list_active",
+      "mcp__plugin_oh-my-claudecode_t__state_clear",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
