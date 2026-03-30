@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "project": "github-trendings-web",
+  "description": "Web UI for github-trendings CLI — discover rising GitHub repos with star velocity scoring",
+  "stories": [
+    {
+      "id": "US-001",
+      "label": "Project Setup — Next.js + Tailwind + Dependencies",
+      "priority": 1,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Next.js 14 project created with TypeScript and Tailwind CSS",
+        "Package.json contains: next, react, react-dom, tailwindcss, postcss, autoprefixer, lucide-react, axios",
+        "next.config.js exists and is valid",
+        "tailwind.config.ts exists with content paths configured",
+        "tsconfig.json extends next/tsconfig.json",
+        "npm install completes without errors",
+        "npm run build succeeds (produces .next/ directory)"
+      ]
+    },
+    {
+      "id": "US-002",
+      "label": "Layout Component — Header + Footer",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Header component with logo/title: 'GitHub Trendings'",
+        "Header has GitHub star count link to the repo",
+        "Footer with MIT license and credits",
+        "Layout wraps all pages via app/layout.tsx",
+        "Global styles load Tailwind directives"
+      ]
+    },
+    {
+      "id": "US-003",
+      "label": "Home Page — Search + Filter UI",
+      "priority": 3,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Page at app/page.tsx renders search form",
+        "Time window selector: 24h / 7d / 30d buttons (default: 7d)",
+        "Language input field with placeholder 'e.g. TypeScript, Python, Go...'",
+        "Limit selector: 10 / 20 / 50 / 100 (default: 20)",
+        "Search button triggers discovery",
+        "Loading state shown while fetching"
+      ]
+    },
+    {
+      "id": "US-004",
+      "label": "Results Display — Repo Cards + Table",
+      "priority": 4,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Repo results displayed as cards in a grid (1-3 columns responsive)",
+        "Each card shows: rank, name (link), description (truncated), stars, velocity, language, age",
+        "Cards show burst indicator for young high-velocity repos",
+        "Empty state message when no results",
+        "Error state shown if API call fails",
+        "Results persist in URL params for shareability"
+      ]
+    },
+    {
+      "id": "US-005",
+      "label": "API Route — /api/discover",
+      "priority": 5,
+      "passes": true,
+      "acceptanceCriteria": [
+        "API route at app/api/discover/route.ts",
+        "Accepts GET params: window, lang, limit",
+        "Calls GitHub Search API with proper headers",
+        "Applies scoring (velocity × log volume) server-side",
+        "Returns JSON array of scored repos",
+        "Handles rate limiting with 429 response",
+        "CORS headers allow Vercel deployment"
+      ]
+    },
+    {
+      "id": "US-006",
+      "label": "Responsive Design + Dark Mode",
+      "priority": 6,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Mobile: 1 column cards, stacked layout",
+        "Tablet: 2 column cards",
+        "Desktop: 3 column cards",
+        "Dark mode support via Tailwind dark: classes",
+        "Smooth transitions on card hover"
+      ]
+    },
+    {
+      "id": "US-007",
+      "label": "Vercel Deployment",
+      "priority": 7,
+      "passes": false,
+      "acceptanceCriteria": [
+        "vercel.json configured for instant deploy",
+        "GitHub repo connected to Vercel",
+        "Deployment produces zero build errors",
+        "Deployed URL is accessible and returns the home page",
+        "API route /api/discover returns valid JSON"
+      ]
+    }
+  ]
+}
