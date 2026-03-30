@@ -34,7 +34,6 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(months / 12)} years ago`;
 }
 
-// GitHub language colors
 const LANG_COLORS: Record<string, string> = {
   TypeScript: 'bg-blue-400',
   Python: 'bg-yellow-400',
@@ -53,16 +52,56 @@ const LANG_COLORS: Record<string, string> = {
   Shell: 'bg-green-500',
 };
 
+function MedalBadge({ rank }: { rank: number }) {
+  if (rank === 1) {
+    return (
+      <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-500 flex items-center justify-center text-xl font-black text-white shadow-xl shadow-amber-500/50 z-10 border-2 border-white dark:border-slate-800 animate-bounce-slow">
+        🥇
+      </div>
+    );
+  }
+  if (rank === 2) {
+    return (
+      <div className="absolute -top-3 -left-3 w-11 h-11 rounded-full bg-gradient-to-br from-slate-300 via-slate-400 to-slate-500 flex items-center justify-center text-lg font-black text-white shadow-xl shadow-slate-400/50 z-10 border-2 border-white dark:border-slate-800">
+        🥈
+      </div>
+    );
+  }
+  if (rank === 3) {
+    return (
+      <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 flex items-center justify-center text-base font-black text-white shadow-xl shadow-orange-500/50 z-10 border-2 border-white dark:border-slate-800">
+        🥉
+      </div>
+    );
+  }
+  return null;
+}
+
+function RankBadge({ rank }: { rank: number }) {
+  return (
+    <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-sm font-black text-slate-500 dark:text-slate-400">
+      #{rank}
+    </span>
+  );
+}
+
 export function RepoCard({ repo }: { repo: ScoredRepo }) {
   const langColor = repo.language ? (LANG_COLORS[repo.language] || 'bg-slate-400') : 'bg-slate-400';
+  const isTop3 = repo.rank <= 3;
 
   return (
     <a
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:-translate-y-1 flex flex-col gap-4"
+      className={`group relative bg-white dark:bg-slate-800/80 border rounded-2xl p-5 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 ${
+        isTop3
+          ? 'border-2 border-yellow-300 dark:border-yellow-600 shadow-xl shadow-yellow-500/10 hover:shadow-2xl hover:shadow-yellow-500/20'
+          : 'border-slate-200 dark:border-slate-700 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-600'
+      }`}
     >
+      <MedalBadge rank={repo.rank} />
+
       {/* Burst badge */}
       {repo.burst && (
         <div className="absolute top-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold shadow-lg">
@@ -73,9 +112,7 @@ export function RepoCard({ repo }: { repo: ScoredRepo }) {
 
       {/* Rank + Name */}
       <div className="flex items-center gap-3 min-w-0">
-        <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-sm font-black text-slate-500 dark:text-slate-400">
-          #{repo.rank}
-        </span>
+        {!isTop3 && <RankBadge rank={repo.rank} />}
         <div className="min-w-0 flex-1">
           <h3 className="font-bold text-slate-900 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-base">
             {repo.full_name}

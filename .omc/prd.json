@@ -128,6 +128,33 @@
         "Language color dots match GitHub language colors",
         "Responsive grid maintains visual hierarchy on mobile"
       ]
+    },
+    {
+      "id": "US-010",
+      "label": "Topic Filter — AI, Models, Utilities, etc.",
+      "priority": 10,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Add topic presets: AI, Models, CLI, DevTools, Web, Mobile, Security, Data",
+        "Topic selector in category tabs row (chips/pills)",
+        "Selecting a topic filters repos that have that GitHub topic",
+        "API route accepts 'topic' GET param",
+        "Topic chips highlight when active",
+        "All existing language tabs still work with topic filter"
+      ]
+    },
+    {
+      "id": "US-011",
+      "label": "Game-style Ranking — Top 3 Medals + Leaderboard",
+      "priority": 11,
+      "passes": true,
+      "acceptanceCriteria": [
+        "Top 3 repos get medal badges: 🥇 #1 (gold), 🥈 #2 (silver), 🥉 #3 (bronze)",
+        "Medal badges styled prominently on cards",
+        "Top 3 cards have larger/elevated visual treatment",
+        "Rest of rankings (#4+) show standard rank number",
+        "Leaderboard-style visual hierarchy (1 > 2 > 3 >> rest)"
+      ]
     }
   ]
 }

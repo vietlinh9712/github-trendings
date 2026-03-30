@@ -35,7 +35,7 @@ function windowToDays(window: string): number {
   return window === '24h' ? 1 : window === '7d' ? 7 : 30;
 }
 
-function buildSearchQuery(window: string, lang?: string): string {
+function buildSearchQuery(window: string, lang?: string, topic?: string): string {
   const days = windowToDays(window);
   const now = new Date();
   const date = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
@@ -44,6 +44,9 @@ function buildSearchQuery(window: string, lang?: string): string {
   if (lang) {
     query += ` language:${lang}`;
   }
+  if (topic) {
+    query += ` topic:${topic}`;
+  }
   return query;
 }
 
@@ -51,9 +54,10 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const window = searchParams.get('window') || '7d';
   const lang = searchParams.get('lang') || '';
+  const topic = searchParams.get('topic') || '';
   const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100);
 
-  const query = buildSearchQuery(window, lang);
+  const query = buildSearchQuery(window, lang, topic);
   const allRepos: Repo[] = [];
   const PER_PAGE = 100;
   const MAX_PAGES = 5;
